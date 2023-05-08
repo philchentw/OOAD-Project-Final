@@ -76,6 +76,22 @@ public class EditController {
 		EditController.getInstance().graphicArray.add(graphic);
 	}
 	
+	public Graphic getToppestGraphic(MouseEvent e) {
+		Graphic toppestGraphic = null;
+		int depth = 100;
+		for (int i = 0; i < graphicArray.size(); i++) {
+			Graphic temp = EditController.getInstance().graphicArray.get(i);
+			if (temp.isSelected(e)) {
+				if (temp.getDepth() <= depth) {
+					depth = temp.getDepth();
+					toppestGraphic = temp;
+				}
+			}
+		}
+		
+		return toppestGraphic;
+	}
+	
 	public static void main(String[] args) {
 		EditController.getInstance();
 	}

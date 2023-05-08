@@ -7,19 +7,19 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-public class Class extends BaseObject {
-	public Class(int ID, MouseEvent e) {
-		width = 80;
-		height = 100;
+public class UseCase extends BaseObject {
+	public UseCase(int ID, MouseEvent e) {
+		width = 120;
+		height = 60;
+		
 		objectID = ID;
-		objectName = "Class " + ID;
+		objectName = "Use Case " + objectID;
 		graphicPoint = new Point(e.getPoint());
 		attachPort();
 	}
 	
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
 		super.draw(g);
 		if (highlight) {
 			draw(g, Color.lightGray);
@@ -35,13 +35,11 @@ public class Class extends BaseObject {
 	public void draw(Graphics g, Color color) {
 		Graphics2D g2 = (Graphics2D) g.create();
 		g2.setColor(color);
-		g2.fillRect(graphicPoint.x, graphicPoint.y, width, height);
+		g2.fillOval(graphicPoint.x, graphicPoint.y, width, height);
 		g2.setStroke(new BasicStroke(1.5f));
 		g2.setColor(Color.black);
-		g2.drawRect(graphicPoint.x, graphicPoint.y, width, height);
-		g2.drawString(objectName, graphicPoint.x + width / 10, graphicPoint.y + height / 5);
-		g2.drawLine(graphicPoint.x, graphicPoint.y + height / 3, graphicPoint.x + width, graphicPoint.y + height / 3);
-	    g2.drawLine(graphicPoint.x, graphicPoint.y + (height / 3) * 2, graphicPoint.x + width, graphicPoint.y + (height / 3) * 2);
-	    g2.dispose();
+		g2.drawOval(graphicPoint.x, graphicPoint.y, width, height);
+		g2.drawString(objectName, graphicPoint.x + width / 4, graphicPoint.y + height / 2);
+		g2.dispose();
 	}
 }
