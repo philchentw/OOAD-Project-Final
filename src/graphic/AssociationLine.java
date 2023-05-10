@@ -9,12 +9,9 @@ public class AssociationLine extends Line {
 	ArrayList<Point> arrowPoints = new ArrayList<>();
 	
 	public AssociationLine(Port sPort, Port ePort) {
-		startPort = sPort;
-		endPort = ePort;
+		super(sPort, ePort);
 		width = 8;
 		height = 8;
-		startPoint = startPort.getCenter();
-		endPoint = endPort.getCenter();
 		calulateArrowPoints();
 	}
 	

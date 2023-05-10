@@ -1,18 +1,19 @@
 package graphic;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.util.ArrayList;
+import java.awt.Graphics2D;
 
-public class GeneralizationLine extends Line {
+public class DependencyLine extends Line {
 	int[] xPoints = new int[3];
 	int[] yPoints = new int[3];
 	
-	public GeneralizationLine(Port sPort, Port ePort) {
+	public DependencyLine(Port sPort, Port ePort) {
 		super(sPort, ePort);
 		width = 8;
 		height = 8;
+		isDashed = true;
 		calulateArrowPoints();
 	}
 	
@@ -20,10 +21,12 @@ public class GeneralizationLine extends Line {
 	public void draw(Graphics g) {
 		super.draw(g);
 		// arrow
-		g.setColor(Color.white);
-		g.fillPolygon(xPoints, yPoints, 3);
-		g.setColor(Color.black);
-		g.drawPolygon(xPoints, yPoints, 3);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
+		g2d.setColor(Color.white);
+		g2d.fillPolygon(xPoints, yPoints, 3);
+		g2d.setColor(Color.black);
+		g2d.drawPolygon(xPoints, yPoints, 3);
 	}
 	
 	private void calulateArrowPoints() {
