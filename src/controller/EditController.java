@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
+import graphic.BasicObject;
+import graphic.CompositeObject;
 import graphic.Graphic;
 import mode.AssociationMode;
 import mode.BaseMode;
@@ -47,7 +52,8 @@ public class EditController {
 		mainFrame = new MainFrame();
 		toolBar = new ToolBar();
 		menuBar = new MenuBar();
-		canvas = new Canvas();
+//		canvas = new Canvas();
+		canvas = Canvas.getInstance();
 		selectMode = new SelectMode();
 		associationMode = new AssociationMode();
 		generalizationLineMode = new GeneralizationLineMode();
@@ -90,6 +96,62 @@ public class EditController {
 		}
 		
 		return toppestGraphic;
+	}
+	
+	public void group() {
+		Vector<Graphic> selectedGraphics = new Vector<>();
+		for (Graphic graphic : EditController.getInstance().graphicArray) {
+			if (graphic.getGraphicPoint() == null) continue;
+			if (graphic.isHighlighed() == true) {
+				selectedGraphics.add(graphic);
+			}
+		}
+		
+		CompositeObject groupObject = new CompositeObject();
+		for (Graphic graphic : selectedGraphics) {
+			groupObject.addGraphic(graphic);
+		}
+		EditController.getInstance().graphicArray.add(groupObject);
+		
+		graphicArray.removeIf(graphic -> selectedGraphics.contains(graphic));
+		
+		menuBar.setGroup(false);
+		mainFrame.repaint();
+	}
+	
+	public void ungroup() {
+		Vector<Graphic> selectedGraphics = new Vector<>();
+		for (Graphic graphic : EditController.getInstance().graphicArray) {
+			if (graphic.getGraphicPoint() == null) continue;
+			if (graphic.isHighlighed() == true) {
+				selectedGraphics.add(graphic);
+			}
+		}
+		
+		if (selectedGraphics.size() == 1) {
+			ArrayList<Graphic> groupList = selectedGraphics.get(0).getGroupList(); 
+			if (groupList != null) {
+				for (Graphic basicObject: groupList) {
+					EditController.getInstance().graphicArray.add(basicObject);
+				}
+				EditController.getInstance().graphicArray.remove(selectedGraphics.get(0));
+				EditController.getInstance().menuBar.setUngroup(false);
+				EditController.getInstance().mainFrame.repaint();
+			}
+		}
+	}
+	
+	public void rename() {
+		for (Graphic graphic : EditController.getInstance().graphicArray) {
+			if (graphic.getGraphicPoint() != null && graphic.isHighlighed()) {
+				String name = JOptionPane.showInputDialog("Please input name:");
+				if (name != null) {
+					graphic.setName(name);
+				}
+			}
+		}
+		
+		EditController.mainFrame.repaint();
 	}
 	
 	public static void main(String[] args) {

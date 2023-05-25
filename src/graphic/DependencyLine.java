@@ -14,13 +14,14 @@ public class DependencyLine extends Line {
 		width = 8;
 		height = 8;
 		isDashed = true;
-		calulateArrowPoints();
+//		calulateArrowPoints();
 	}
 	
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
 		// arrow
+		calulateArrowPoints();
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
 		g2d.setColor(Color.white);
@@ -32,16 +33,16 @@ public class DependencyLine extends Line {
 	private void calulateArrowPoints() {
 		double arrowheadAngle = Math.atan(width / height); // angle of arrowhead
         double arrowheadLength = Math.sqrt(width * width + height * height); // length of arrowhead
-        double[] arrXY_1 = rotateVec(endPoint.x - startPoint.x, endPoint.y - startPoint.y, arrowheadAngle, true, arrowheadLength);
-        double[] arrXY_2 = rotateVec(endPoint.x - startPoint.x, endPoint.y - startPoint.y, -arrowheadAngle, true, arrowheadLength);
+        double[] arrXY_1 = rotateVec(endPort.getCenter().x - startPort.getCenter().x, endPort.getCenter().y - startPort.getCenter().y, arrowheadAngle, true, arrowheadLength);
+        double[] arrXY_2 = rotateVec(endPort.getCenter().x - startPort.getCenter().x, endPort.getCenter().y - startPort.getCenter().y, -arrowheadAngle, true, arrowheadLength);
 
-        xPoints[0] = (int) (endPoint.x - arrXY_1[0]);
-        xPoints[1] = (int) (endPoint.getX());
-        xPoints[2] = (int) (endPoint.x - arrXY_2[0]);
+        xPoints[0] = (int) (endPort.getCenter().x - arrXY_1[0]);
+        xPoints[1] = (int) (endPort.getCenter().getX());
+        xPoints[2] = (int) (endPort.getCenter().x - arrXY_2[0]);
 
-        yPoints[0] = (int) (endPoint.y - arrXY_1[1]);
-        yPoints[1] = (int) (endPoint.getY());
-        yPoints[2] = (int) ((endPoint.y - arrXY_2[1]));
+        yPoints[0] = (int) (endPort.getCenter().y - arrXY_1[1]);
+        yPoints[1] = (int) (endPort.getCenter().getY());
+        yPoints[2] = (int) ((endPort.getCenter().y - arrXY_2[1]));
         
 	}
 }

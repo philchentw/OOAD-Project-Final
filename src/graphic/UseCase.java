@@ -7,13 +7,13 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-public class UseCase extends BaseObject {
+public class UseCase extends BasicObject {
 	public UseCase(int ID, MouseEvent e) {
 		width = 120;
 		height = 60;
 		
-		objectID = ID;
-		objectName = "Use Case " + objectID;
+		graphicID = ID;
+		graphicName = "Use Case " + graphicID;
 		graphicPoint = new Point(e.getPoint());
 		attachPort();
 	}
@@ -39,7 +39,7 @@ public class UseCase extends BaseObject {
 		g2.setStroke(new BasicStroke(1.5f));
 		g2.setColor(Color.black);
 		g2.drawOval(graphicPoint.x, graphicPoint.y, width, height);
-		g2.drawString(objectName, graphicPoint.x + width / 4, graphicPoint.y + height / 2);
+		g2.drawString(graphicName, graphicPoint.x + width / 4, graphicPoint.y + height / 2);
 		g2.dispose();
 	}
 }

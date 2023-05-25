@@ -3,15 +3,17 @@ package graphic;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 
 public class Port extends Graphic {
-	private int x, y;
-	private int width = 8;
-	private int height = 8;
 	private Graphic connectedGraphic;
+	private Point center = new Point();
 	
 	public Port(Graphic graphic) {
 		connectedGraphic = graphic;
+		width = 8;
+		height = 8;
+		graphicPoint = new Point();
 	}
 	
 	@Override
@@ -22,44 +24,44 @@ public class Port extends Graphic {
 	
 	public void draw(Graphics g, Color color) {
 		g.setColor(color);
-		g.fillRect(x, y, width, height);
+		g.fillRect(graphicPoint.x, graphicPoint.y, width, height);
 		g.setColor(Color.black);
-		g.drawRect(x, y, width, height);
+		g.drawRect(graphicPoint.x, graphicPoint.y, width, height);
 	}
 	
 	public void setX(int x) {
-		this.x = x;
+		this.graphicPoint.x = x;
 	}
 	
 	public int getX() {
-		return x;
+		return graphicPoint.x;
 	}
 	
 	public void setY(int y) {
-		this.y = y;
+		this.graphicPoint.y = y;
 	}
 	
 	public int getY() {
-		return y;
+		return graphicPoint.y;
 	}
 	
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	
-	public int getWidth() {
-		return width;
-	}
-	
-	public void setHeight(int height) {
-		this.height = height;
-	}
-	
-	public int getHeight() {
-		return height;
+	public void setCenter(Point center) {
+		this.center = center;
 	}
 	
 	public Point getCenter() {
-		return new Point(x + width / 2, y + height / 2);
+		center.x = graphicPoint.x + width / 2;
+		center.y = graphicPoint.y + height / 2;
+		return center;
+	}
+	
+	@Override
+	public boolean isSelected(MouseEvent e) {
+		Point current = e.getPoint();
+		if (current.x >= graphicPoint.x && current.x <= graphicPoint.x + width
+				&& current.y >= graphicPoint.y && current.y <= graphicPoint.y + height) {
+			return true;
+		}
+		return false;
 	}
 }

@@ -7,12 +7,12 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-public class Class extends BaseObject {
+public class Class extends BasicObject {
 	public Class(int ID, MouseEvent e) {
 		width = 80;
 		height = 100;
-		objectID = ID;
-		objectName = "Class " + ID;
+		graphicID = ID;
+		graphicName = "Class " + ID;
 		graphicPoint = new Point(e.getPoint());
 		attachPort();
 	}
@@ -39,7 +39,7 @@ public class Class extends BaseObject {
 		g2.setStroke(new BasicStroke(1.5f));
 		g2.setColor(Color.black);
 		g2.drawRect(graphicPoint.x, graphicPoint.y, width, height);
-		g2.drawString(objectName, graphicPoint.x + width / 10, graphicPoint.y + height / 5);
+		g2.drawString(graphicName, graphicPoint.x + width / 10, graphicPoint.y + height / 5);
 		g2.drawLine(graphicPoint.x, graphicPoint.y + height / 3, graphicPoint.x + width, graphicPoint.y + height / 3);
 	    g2.drawLine(graphicPoint.x, graphicPoint.y + (height / 3) * 2, graphicPoint.x + width, graphicPoint.y + (height / 3) * 2);
 	    g2.dispose();

@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
 import constant.Constant;
+import controller.EditController;
 
 public class MainFrame extends JFrame {
 	private JMenuBar menuBar;
@@ -22,5 +24,13 @@ public class MainFrame extends JFrame {
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((int)(screenSize.getWidth()/2 - Constant.WINDOW_WIDTH/2), (int)(screenSize.getHeight()/2 - Constant.WINDOW_HEIGHT/2), Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		EditController.menuBar.repaint();
+		EditController.toolBar.repaint();
+		EditController.canvas.repaint();
 	}
 }

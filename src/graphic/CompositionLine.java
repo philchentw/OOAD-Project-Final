@@ -10,12 +10,13 @@ public class CompositionLine extends Line {
 	
 	public CompositionLine(Port sPort, Port ePort) {
 		super(sPort, ePort);
-		calculateDiamondPoints();
+//		calculateDiamondPoints();
 	}
 	
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
+		calculateDiamondPoints();
 		g.setColor(Color.white);
 		g.fillPolygon(xPoints, yPoints, 4);
 		g.setColor(Color.black);

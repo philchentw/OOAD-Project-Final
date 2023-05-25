@@ -5,13 +5,10 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class BaseObject extends Graphic {
-	protected int objectID;
-	protected String objectName;
-//	protected boolean isSelected = false;
+public class BasicObject extends Graphic {
 	protected Port[] portArray = new Port[5];
 	
-	public BaseObject() {
+	public BasicObject() {
 		for (int i = 1; i <= 4; i++) {
 			portArray[i] = new Port(this);
 		}
@@ -21,15 +18,23 @@ public class BaseObject extends Graphic {
 		// top -> right -> bottom -> left
 		portArray[1].setX(graphicPoint.x + (width / 2) - (portArray[1].getWidth() / 2));
 		portArray[1].setY(graphicPoint.y - (portArray[1].getHeight() / 2));
+//		portArray[1].setCenter(new Point(portArray[1].getX() + portArray[1].getWidth() / 2, portArray[1].getY() + portArray[1].getHeight() / 2));
 		
 		portArray[2].setX(graphicPoint.x + width - (portArray[2].getWidth() / 2));
 		portArray[2].setY(graphicPoint.y + (height / 2) - (portArray[2].getHeight() / 2));
+//		portArray[2].setCenter(new Point(portArray[2].getX() + portArray[2].getWidth() / 2, portArray[2].getY() + portArray[2].getHeight() / 2));
 		
 		portArray[3].setX(graphicPoint.x + (width / 2) - (portArray[3].getHeight() / 2));
 		portArray[3].setY(graphicPoint.y + height - (portArray[3].getHeight() / 2));
+//		portArray[3].setCenter(new Point(portArray[3].getX() + portArray[3].getWidth() / 2, portArray[3].getY() + portArray[3].getHeight() / 2));
 		
 		portArray[4].setX(graphicPoint.x - (portArray[4].getWidth() / 2));
 		portArray[4].setY(graphicPoint.y + (height / 2) - (portArray[4].getHeight() / 2));
+//		portArray[4].setCenter(new Point(portArray[4].getX() + portArray[4].getWidth() / 2, portArray[4].getY() + portArray[4].getHeight() / 2));
+	}
+	
+	public Port[] getPortArray() {
+		return portArray;
 	}
 	
 	@Override
@@ -64,5 +69,13 @@ public class BaseObject extends Graphic {
 		}
 		
 		return res;
+	}
+	
+	@Override
+	public void setPosition(int dx, int dy) {
+		super.setPosition(dx, dy);
+		for (int i = 1; i <= 4; i++) {
+			portArray[i].setPosition(dx, dy);
+		}
 	}
 }

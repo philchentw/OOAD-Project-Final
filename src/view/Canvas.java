@@ -14,8 +14,12 @@ import javax.swing.border.Border;
 import constant.Constant;
 import controller.EditController;
 import graphic.Graphic;
+import graphic.Range;
 
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
+	private static Canvas _instance = null;
+	private Graphic selectRange;
+	
 	public Canvas() {	
 		setBackground(Color.white);
 		setBorder(BorderFactory.createTitledBorder("Canvas"));
@@ -25,6 +29,17 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		setPreferredSize(new Dimension(Constant.CANVAS_WIDTH, Constant.CANVAS_HEIGHT));
 	}
 
+	public static Canvas getInstance() {
+		if (_instance == null) {
+			_instance = new Canvas();
+		}
+		return _instance;
+	}
+	
+	public void setSelectRange(Range range) {
+		selectRange = range;
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (EditController.currentMode != null) {
