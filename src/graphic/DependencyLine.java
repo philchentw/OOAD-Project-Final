@@ -26,7 +26,10 @@ public class DependencyLine extends Line {
 		g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
 		g2d.setColor(Color.white);
 		g2d.fillPolygon(xPoints, yPoints, 3);
-		g2d.setColor(Color.black);
+		if (startPort.isHighlighed() || endPort.isHighlighed())
+			g2d.setColor(Color.cyan);
+		else
+			g2d.setColor(Color.black);
 		g2d.drawPolygon(xPoints, yPoints, 3);
 	}
 	

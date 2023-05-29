@@ -29,6 +29,12 @@ public class SelectMode extends BaseMode {
 		if (targetGraphic instanceof BasicObject) {
 			EditController.getInstance().menuBar.setChangeObjectName(true);
 		}
+		if (targetGraphic != null && targetGraphic.isHighlighed() && targetGraphic instanceof BasicObject){
+			selectPort((BasicObject)targetGraphic);
+		}
+		if (targetGraphic == null && selectedPort != null) {
+			selectPort(null);
+		}
 		EditController.getInstance().canvas.repaint();
 	}
 	
@@ -45,15 +51,8 @@ public class SelectMode extends BaseMode {
 			EditController.getInstance().menuBar.setUngroup(false);
 			EditController.getInstance().menuBar.setChangeObjectName(false);
 		}
-		else if (targetGraphic.isHighlighed() && targetGraphic instanceof BasicObject){
-			selectedPort((BasicObject)targetGraphic);
-			System.out.println(targetPortNum);
-		}
-		else if (selectedPort != null) {
-			selectedPort.disableHighlight();
-			selectedPort = null;
-			EditController.getInstance().canvas.repaint();
-		}
+		
+		EditController.getInstance().canvas.repaint();
 	}
 
 	@Override
@@ -136,7 +135,14 @@ public class SelectMode extends BaseMode {
 		}
 	}
 	
-	private void selectedPort(BasicObject basicObject) {
+	private void selectPort(BasicObject basicObject) {
+		if (selectedPort != null) {
+			selectedPort.disableHighlight();
+			selectedPort = null;
+		}
+		if (basicObject == null) {
+			return;
+		}
 		Port[] portArray = basicObject.getPortArray();
 		for (int i = 1; i <= 4; i++) {
 			if (portArray[i].isSelected(startMouseEvent)) {

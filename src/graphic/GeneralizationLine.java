@@ -23,7 +23,10 @@ public class GeneralizationLine extends Line {
 		calulateArrowPoints();
 		g.setColor(Color.white);
 		g.fillPolygon(xPoints, yPoints, 3);
-		g.setColor(Color.black);
+		if (startPort.isHighlighed() || endPort.isHighlighed())
+			g.setColor(Color.cyan);
+		else
+			g.setColor(Color.black);
 		g.drawPolygon(xPoints, yPoints, 3);
 	}
 	

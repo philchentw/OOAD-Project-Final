@@ -19,7 +19,10 @@ public class CompositionLine extends Line {
 		calculateDiamondPoints();
 		g.setColor(Color.white);
 		g.fillPolygon(xPoints, yPoints, 4);
-		g.setColor(Color.black);
+		if (startPort.isHighlighed() || endPort.isHighlighed())
+			g.setColor(Color.cyan);
+		else
+			g.setColor(Color.black);
 		g.drawPolygon(xPoints, yPoints, 4);
 	}
 	
