@@ -17,7 +17,7 @@ public class UseCaseButton extends ModeButton {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		EditController.currentMode = EditController.useCaseMode;
+		EditController.getInstance().currentMode = EditController.getInstance().useCaseMode;
 	}
 	
 	

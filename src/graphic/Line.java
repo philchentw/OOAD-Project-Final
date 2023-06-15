@@ -4,19 +4,14 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.util.ArrayList;
 
 public class Line extends Graphic {
 	protected Port startPort, endPort;
-//	protected Point startPort.getCenter(), endPort.getCenter();
 	protected boolean isDashed = false;
 	
 	public Line(Port sPort, Port ePort) {
 		startPort = sPort;
 		endPort = ePort;
-//		startPort.getCenter() = sPort.getCenter();
-//		endPort.getCenter() = ePort.getCenter();
 	}
 	
 	public static double[] rotateVec(int px, int py, double ang, boolean isChLen, double newLen) {
@@ -36,20 +31,20 @@ public class Line extends Graphic {
 	
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
 		super.draw(g);
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(Color.black);
 		if (startPort.isHighlighed() || endPort.isHighlighed()) {
 			g2d.setStroke(new BasicStroke(2));
 			g2d.setColor(Color.cyan);
 		}
+		else {
+			g2d.setStroke(new BasicStroke(1));
+			g2d.setColor(Color.black);
+		}
 		if (!isDashed) {
-//			g2d.setColor(Color.black);
 			g2d.drawLine(startPort.getCenter().x, startPort.getCenter().y, endPort.getCenter().x, endPort.getCenter().y);
 		}
 		else {
-//			g2d.setColor(Color.black);
 			float[] dashes = {5f};
 			g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 1.0f, dashes, 0));
 			g2d.drawLine(startPort.getCenter().x, startPort.getCenter().y, endPort.getCenter().x, endPort.getCenter().y);

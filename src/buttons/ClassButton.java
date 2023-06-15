@@ -17,6 +17,6 @@ public class ClassButton extends ModeButton {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		EditController.currentMode = EditController.classMode;
+		EditController.getInstance().currentMode = EditController.getInstance().classMode;
 	}
 }

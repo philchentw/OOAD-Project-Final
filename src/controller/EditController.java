@@ -28,19 +28,19 @@ import view.ToolBar;
 public class EditController {
 	private static EditController _instance = null;
 	
-	public static MainFrame mainFrame;
-	public static ToolBar toolBar;
-	public static MenuBar menuBar;
-	public static Canvas canvas;
+	public MainFrame mainFrame;
+	public ToolBar toolBar;
+	public MenuBar menuBar;
+	public Canvas canvas;
 	
-	public static BaseMode currentMode = null;
-	public static SelectMode selectMode;
-	public static AssociationMode associationMode;
-	public static GeneralizationLineMode generalizationLineMode;
-	public static CompositionLineMode compositionLineMode;
-	public static DependencyLineMode dependencyLineMode;
-	public static ClassMode classMode;
-	public static UseCaseMode useCaseMode;
+	public BaseMode currentMode = null;
+	public final SelectMode selectMode = new SelectMode();
+	public final AssociationMode associationMode = new AssociationMode();
+	public final GeneralizationLineMode generalizationLineMode = new GeneralizationLineMode();
+	public final CompositionLineMode compositionLineMode = new CompositionLineMode();
+	public final DependencyLineMode dependencyLineMode = new DependencyLineMode();
+	public final ClassMode classMode = new ClassMode();
+	public final UseCaseMode useCaseMode = new UseCaseMode();
 	
 	public Vector<Graphic> graphicArray = new Vector<>();
 	
@@ -52,15 +52,7 @@ public class EditController {
 		mainFrame = new MainFrame();
 		toolBar = new ToolBar();
 		menuBar = new MenuBar();
-//		canvas = new Canvas();
-		canvas = Canvas.getInstance();
-		selectMode = new SelectMode();
-		associationMode = new AssociationMode();
-		generalizationLineMode = new GeneralizationLineMode();
-		compositionLineMode = new CompositionLineMode();
-		dependencyLineMode = new DependencyLineMode();
-		classMode = new ClassMode();
-		useCaseMode = new UseCaseMode();
+		canvas = new Canvas();
 		
 		Container content = mainFrame.getContentPane();
 		content.setBackground(Color.white);
@@ -151,7 +143,7 @@ public class EditController {
 			}
 		}
 		
-		EditController.mainFrame.repaint();
+		EditController.getInstance().mainFrame.repaint();
 	}
 	
 	public static void main(String[] args) {

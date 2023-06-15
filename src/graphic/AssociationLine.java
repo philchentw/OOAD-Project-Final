@@ -12,7 +12,6 @@ public class AssociationLine extends Line {
 		super(sPort, ePort);
 		width = 8;
 		height = 8;
-//		calulateArrowPoints();
 	}
 	
 	@Override

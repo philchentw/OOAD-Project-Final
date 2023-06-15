@@ -17,8 +17,6 @@ import graphic.Graphic;
 import graphic.Range;
 
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
-	private static Canvas _instance = null;
-	private Graphic selectRange;
 	
 	public Canvas() {	
 		setBackground(Color.white);
@@ -29,63 +27,52 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		setPreferredSize(new Dimension(Constant.CANVAS_WIDTH, Constant.CANVAS_HEIGHT));
 	}
 
-	public static Canvas getInstance() {
-		if (_instance == null) {
-			_instance = new Canvas();
-		}
-		return _instance;
-	}
-	
-	public void setSelectRange(Range range) {
-		selectRange = range;
-	}
-	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (EditController.currentMode != null) {
-			EditController.currentMode.mouseDragged(e);
+		if (EditController.getInstance().currentMode != null) {
+			EditController.getInstance().currentMode.mouseDragged(e);
 		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if (EditController.currentMode != null) {
-			EditController.currentMode.mouseMoved(e);
+		if (EditController.getInstance().currentMode != null) {
+			EditController.getInstance().currentMode.mouseMoved(e);
 		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (EditController.currentMode != null) {
-			EditController.currentMode.mouseClicked(e);
+		if (EditController.getInstance().currentMode != null) {
+			EditController.getInstance().currentMode.mouseClicked(e);
 		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (EditController.currentMode != null) {
-			EditController.currentMode.mousePressed(e);
+		if (EditController.getInstance().currentMode != null) {
+			EditController.getInstance().currentMode.mousePressed(e);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (EditController.currentMode != null) {
-			EditController.currentMode.mouseReleased(e);
+		if (EditController.getInstance().currentMode != null) {
+			EditController.getInstance().currentMode.mouseReleased(e);
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if (EditController.currentMode != null) {
-			EditController.currentMode.mouseEntered(e);
+		if (EditController.getInstance().currentMode != null) {
+			EditController.getInstance().currentMode.mouseEntered(e);
 		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if (EditController.currentMode != null) {
-			EditController.currentMode.mouseExited(e);
+		if (EditController.getInstance().currentMode != null) {
+			EditController.getInstance().currentMode.mouseExited(e);
 		}
 	}
 	

@@ -17,7 +17,7 @@ public class DependencyButton extends ModeButton {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		EditController.currentMode = EditController.dependencyLineMode;
+		EditController.getInstance().currentMode = EditController.getInstance().dependencyLineMode;
 	}
 	
 }

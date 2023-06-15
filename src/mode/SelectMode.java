@@ -63,7 +63,7 @@ public class SelectMode extends BaseMode {
 			selectRange();
 			EditController.getInstance().graphicArray.remove(range);
 		}
-		EditController.canvas.repaint();
+		EditController.getInstance().canvas.repaint();
 	}
 	
 	@Override
@@ -88,7 +88,7 @@ public class SelectMode extends BaseMode {
 			EditController.getInstance().graphicArray.remove(range);
 			EditController.getInstance().graphicArray.add(range);
 		}
-		EditController.canvas.repaint();
+		EditController.getInstance().canvas.repaint();
 	}
 	
 	private void selectThisGraphic() {
@@ -126,12 +126,12 @@ public class SelectMode extends BaseMode {
 		}
 		
 		if (selectedGraphic.size() == 1 && selectedGraphic.get(0) instanceof BasicObject) {
-			EditController.menuBar.setChangeObjectName(true);
+			EditController.getInstance().menuBar.setChangeObjectName(true);
 		}
 		
 		if (selectedGraphic.size() >= 2) {
 //			System.out.println("set group true");
-			EditController.menuBar.setGroup(true);
+			EditController.getInstance().menuBar.setGroup(true);
 		}
 	}
 	

@@ -17,7 +17,7 @@ public class SelectButton extends ModeButton {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		EditController.currentMode = EditController.selectMode;
+		EditController.getInstance().currentMode = EditController.getInstance().selectMode;
 	}
 	
 }

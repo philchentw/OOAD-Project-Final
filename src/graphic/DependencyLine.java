@@ -14,7 +14,6 @@ public class DependencyLine extends Line {
 		width = 8;
 		height = 8;
 		isDashed = true;
-//		calulateArrowPoints();
 	}
 	
 	@Override

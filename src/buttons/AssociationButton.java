@@ -17,6 +17,6 @@ public class AssociationButton extends ModeButton {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		EditController.currentMode = EditController.associationMode;
+		EditController.getInstance().currentMode = EditController.getInstance().associationMode;
 	}
 }

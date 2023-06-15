@@ -17,7 +17,7 @@ public class GeneralizationButton extends ModeButton {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		EditController.currentMode = EditController.generalizationLineMode;
+		EditController.getInstance().currentMode = EditController.getInstance().generalizationLineMode;
 	}
 	
 }

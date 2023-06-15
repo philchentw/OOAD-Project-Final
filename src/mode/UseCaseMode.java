@@ -15,6 +15,6 @@ public class UseCaseMode extends BaseMode {
 		super.mouseClicked(e);
 		EditController.getInstance().useCaseCounter++;
 		EditController.getInstance().addGraphic(new UseCase(EditController.getInstance().useCaseCounter, e), e);
-		EditController.canvas.repaint();
+		EditController.getInstance().canvas.repaint();
 	}
 }

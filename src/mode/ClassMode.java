@@ -15,6 +15,6 @@ public class ClassMode extends BaseMode {
 		super.mouseClicked(e);
 		EditController.getInstance().classCounter++;
 		EditController.getInstance().addGraphic(new Class(EditController.getInstance().classCounter, e), e);
-		EditController.canvas.repaint();
+		EditController.getInstance().canvas.repaint();
 	}
 }

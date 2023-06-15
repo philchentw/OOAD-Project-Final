@@ -29,7 +29,7 @@ public class CompositeObject extends Graphic {
 		super.draw(g);
 		g.setColor(Color.red);
 		g.drawRoundRect(graphicPoint.x - 5, graphicPoint.y - 5, width + 10, height + 10, 10, 10);
-		g.drawString(graphicName, graphicPoint.x, graphicPoint.y - 10);
+		g.drawString(graphicName, graphicPoint.x, graphicPoint.y + 10);
 		for (Graphic graphic : groupList) {
 			graphic.draw(g);
 		}
@@ -50,7 +50,7 @@ public class CompositeObject extends Graphic {
 		}
 		this.highlight = true;
 		
-		EditController.menuBar.setUngroup(true);
+		EditController.getInstance().menuBar.setUngroup(true);
 	}
 	
 	@Override
@@ -60,7 +60,7 @@ public class CompositeObject extends Graphic {
 		}
 		this.highlight = false;
 		
-		EditController.menuBar.setUngroup(false);
+		EditController.getInstance().menuBar.setUngroup(false);
 	}
 	
 	@Override
@@ -111,5 +111,7 @@ public class CompositeObject extends Graphic {
 			width = rightBottom.x - leftUp.x;
 			height = rightBottom.y - leftUp.y;
 		}
+		graphicPoint.y -= 10;
+		height += 10;
 	}
 }

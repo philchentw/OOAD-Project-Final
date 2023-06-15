@@ -19,7 +19,7 @@ public class CompositionButton extends ModeButton {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		EditController.currentMode = EditController.compositionLineMode;
+		EditController.getInstance().currentMode = EditController.getInstance().compositionLineMode;
 	}
 	
 }

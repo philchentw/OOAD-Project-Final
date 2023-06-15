@@ -29,8 +29,8 @@ public class MainFrame extends JFrame {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		EditController.menuBar.repaint();
-		EditController.toolBar.repaint();
-		EditController.canvas.repaint();
+		EditController.getInstance().menuBar.repaint();
+		EditController.getInstance().toolBar.repaint();
+		EditController.getInstance().canvas.repaint();
 	}
 }
