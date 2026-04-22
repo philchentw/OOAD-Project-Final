@@ -6,22 +6,16 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import buttons.AssociationButton;
-import buttons.ClassButton;
-import buttons.CompositionButton;
-import buttons.DependencyButton;
-import buttons.GeneralizationButton;
-import buttons.ModeButton;
-import buttons.SelectButton;
-import buttons.UseCaseButton;
 import constant.Constant;
+import controller.EditController;
 import mode.BaseMode;
 
 public class ToolBar extends JPanel {
-	private ArrayList<ModeButton> buttons = new ArrayList<>();
+	private ArrayList<JButton> buttons = new ArrayList<>();
 	
 	public ToolBar() {
 		setBackground(Color.gray);
@@ -29,23 +23,69 @@ public class ToolBar extends JPanel {
 		setVisible(true);
 		setLayout(new GridLayout(7, 1));
 		
-		buttons.add(new SelectButton());
-		buttons.add(new AssociationButton());
-		buttons.add(new GeneralizationButton());
-		buttons.add(new CompositionButton());
-		buttons.add(new DependencyButton());
-		buttons.add(new ClassButton());
-		buttons.add(new UseCaseButton());
+		// 建立按鈕
+        buttons.add(createButton("image/cursor.png", () -> {
+            EditController.getInstance().currentMode =
+                EditController.getInstance().selectMode;
+        }));
+
+        buttons.add(createButton("image/association.png", () -> {
+            EditController.getInstance().currentMode =
+                EditController.getInstance().associationMode;
+        }));
+
+        buttons.add(createButton("image/generalization_line.png", () -> {
+            EditController.getInstance().currentMode =
+                EditController.getInstance().generalizationLineMode;
+        }));
+
+        buttons.add(createButton("image/com_line_nobg.png", () -> {
+            EditController.getInstance().currentMode =
+                EditController.getInstance().compositionLineMode;
+        }));
+
+        buttons.add(createButton("image/dependency2.png", () -> {
+            EditController.getInstance().currentMode =
+                EditController.getInstance().dependencyLineMode;
+        }));
+
+        buttons.add(createButton("image/class_nobg.png", () -> {
+            EditController.getInstance().currentMode =
+                EditController.getInstance().classMode;
+        }));
+
+        buttons.add(createButton("image/case_nobg.png", () -> {
+            EditController.getInstance().currentMode =
+                EditController.getInstance().useCaseMode;
+        }));
 		
-		for (ModeButton button : buttons) {
+		for (JButton button : buttons) {
 			add(button);
 		}
 		
 		setVisible(true);
 	}
 	
+	// 建立按鈕的共用方法
+    private JButton createButton(String iconPath, Runnable onClick) {
+        JButton button = new JButton(new ImageIcon(iconPath));
+
+        button.setFocusPainted(false);
+
+        button.addActionListener(e -> {
+            initializeIcon(); // reset其他按鈕
+
+            button.setOpaque(true);
+            button.setBackground(Color.LIGHT_GRAY);
+
+            onClick.run(); // 執行 mode 切換
+        });
+
+        return button;
+    }
+    
 	public void initializeIcon() {
-		for (ModeButton button : buttons) {
+		for (JButton button : buttons) {
 			button.setBackground(UIManager.getColor("Button.background"));
 			button.setOpaque(false);
 		}
