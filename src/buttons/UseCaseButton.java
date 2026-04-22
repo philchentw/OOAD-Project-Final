@@ -11,7 +11,7 @@ import controller.EditController;
 public class UseCaseButton extends ModeButton {
 	public UseCaseButton() {
 		super();
-		setIcon(new ImageIcon("image/case.png"));
+		setIcon(new ImageIcon("image/case_nobg.png"));
 	}
 
 	@Override

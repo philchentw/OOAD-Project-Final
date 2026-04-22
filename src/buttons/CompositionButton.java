@@ -13,7 +13,7 @@ import controller.EditController;
 public class CompositionButton extends ModeButton {
 	public CompositionButton() {
 		super();
-		setIcon(new ImageIcon("image/com_line.png"));
+		setIcon(new ImageIcon("image/com_line_nobg.png"));
 	}
 
 	@Override

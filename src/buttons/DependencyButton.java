@@ -11,7 +11,7 @@ import controller.EditController;
 public class DependencyButton extends ModeButton {
 	public DependencyButton() {
 		super();
-		setIcon(new ImageIcon("image/dependency.png"));
+		setIcon(new ImageIcon("image/dependency2.png"));
 	}
 
 	@Override

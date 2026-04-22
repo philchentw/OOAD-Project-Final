@@ -11,7 +11,7 @@ import controller.EditController;
 public class ClassButton extends ModeButton {
 	public ClassButton() {
 		super();
-		setIcon(new ImageIcon("image/class.png"));
+		setIcon(new ImageIcon("image/class_nobg.png"));
 	}
 
 	@Override
