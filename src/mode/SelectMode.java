@@ -43,7 +43,9 @@ public class SelectMode extends BaseMode {
 		super.mousePressed(e);
 		targetGraphic = EditController.getInstance().getToppestGraphic(e);
 		startMouseEvent = e;
+		
 		if (targetGraphic == null) {
+			EditController.getInstance().graphicArray.remove(range);
 			range = new Range(e.getX(), e.getY());
 			selectThisGraphic();
 			
@@ -58,11 +60,14 @@ public class SelectMode extends BaseMode {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		super.mouseReleased(e);
+		
 		if (targetGraphic == null) {
 			endMouseEvent = e;
 			selectRange();
 			EditController.getInstance().graphicArray.remove(range);
+			range = null;
 		}
+		
 		EditController.getInstance().canvas.repaint();
 	}
 	
@@ -70,6 +75,8 @@ public class SelectMode extends BaseMode {
 	public void mouseDragged(MouseEvent e) {
 		super.mouseDragged(e);
 //		System.out.println("mouse Dragged");
+		if (range == null) return;
+		
 		endMouseEvent = e;
 		if (targetGraphic != null) {
 			if (targetPortNum == 0) {
