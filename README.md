@@ -8,3 +8,6 @@ jdk 13.0.2
 
 ## GUI工具
 java swing
+
+## 展示
+![image](image/demo.png)
