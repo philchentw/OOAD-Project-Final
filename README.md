@@ -10,4 +10,4 @@ jdk 13.0.2
 java swing
 
 ## 展示
-![image](image/demo.png)
+![image](image/demo2.png)
