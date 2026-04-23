@@ -75,7 +75,6 @@ public class SelectMode extends BaseMode {
 	public void mouseDragged(MouseEvent e) {
 		super.mouseDragged(e);
 //		System.out.println("mouse Dragged");
-		if (range == null) return;
 		
 		endMouseEvent = e;
 		if (targetGraphic != null) {
